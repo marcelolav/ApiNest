@@ -1,59 +1,57 @@
+# APINest
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Descripción
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
+API/REST desarrollada sobre NEST JS para dar servicio a sistema de control de inventario Versión 2.0
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
+## Instalación
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+## Ejecución de la APP
 
 ```bash
-# development
+# Modo Desarrollo
 $ npm run start
 
-# watch mode
+# Modo Desarrollo con visualización de cambios en tiempo real
 $ npm run start:dev
 
-# production mode
+# Modo Producción
 $ npm run start:prod
 ```
 
-## Test
+## Pruebas
 
 ```bash
-# unit tests
+# Pruebas Unitarias
 $ npm run test
 
-# e2e tests
+# Pruebas e2e
 $ npm run test:e2e
 
-# test coverage
+# Pruebas coverage
 $ npm run test:cov
 ```
 
-## Support
+## Soporte
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Nest es un proyecto de código abierto licenciado por MIT. Puede crecer gracias al apoyo de los patrocinadores. Si quieres unirte a ellos, por favor [leer mas aquí](https://docs.nestjs.com/support).
 
-## Stay in touch
+La API fué desarrollada y se encuentra en etapa de pruebas por [Marcelo Lavandeira](mailto:marcelo.lavandeira@gmail.com)
+
+## Contactos
 
 - Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
 - Website - [https://nestjs.com](https://nestjs.com/)
 - Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
+## Licencia NEST
 
-Nest is [MIT licensed](LICENSE).
+Nest posee una licencia de tipo [MIT licensed](LICENSE).
