@@ -14,6 +14,22 @@ API/REST desarrollada sobre NEST JS para dar servicio a sistema de control de in
 $ npm install
 ```
 
+Crear archivo de configuración en la raiz del proyecto llamado ormconfig.json de las siguientes caracteristicas
+
+```
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "su usuario para acceso a mysql",
+  "password": "su contraseña para acceso a mysql",
+  "database": "ecom",
+  "entities": ["src/**/**.entity{.ts,.js}"],
+  "synchronize": true
+}
+
+```
+
 ## Ejecución de la APP
 
 ```bash
