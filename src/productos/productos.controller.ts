@@ -10,14 +10,14 @@ import {
 } from '@nestjs/common';
 import { crearProductoDTO } from './dto/producto.dto';
 import { ProductosService } from './productos.service';
-import { Producto } from './producto.entity';
+//import { Producto } from './producto.entity';
 
 @Controller('productos')
 export class ProductosController {
   constructor(private productoService: ProductosService) {}
 
   @Get()
-  obtenerProductos(): Promise<Producto[]> {
+  obtenerProductos() {
     return this.productoService.obtenerProductos();
   }
   @Get(':id')
@@ -25,6 +25,10 @@ export class ProductosController {
     return this.productoService.obtenerProductoId(idproductos);
   }
 
+  @Get('/cb/:id')
+  obtenerProductoCB(@Param('id') codigobarra: string) {
+    return this.productoService.obtenerProductoCB(codigobarra);
+  }
   @Post()
   crearProducto(@Body() nuevoProducto: crearProductoDTO) {
     return this.productoService.crearProducto(nuevoProducto);

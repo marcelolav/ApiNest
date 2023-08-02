@@ -3,6 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Producto } from './producto.entity';
 import { crearProductoDTO } from './dto/producto.dto';
+//import { Rubro } from './rubro.entity';
+// import { validate } from 'class-validator';
+
 @Injectable()
 export class ProductosService {
   constructor(
@@ -10,21 +13,29 @@ export class ProductosService {
   ) {}
 
   async crearProducto(producto: crearProductoDTO) {
-    const existeProducto = await this.productoRepo.findOne({
+    const codigobarra = producto.codigobarra;
+    const nombreproducto = producto.nombreproducto;
+    const barcodeEncontrado = await this.productoRepo.findOne({
       where: {
-        codigobarra: producto.codigobarra,
-        nombreproducto: producto.nombreproducto,
+        codigobarra,
       },
     });
-    if (existeProducto) {
-      return new HttpException('El producto ya existe', HttpStatus.CONFLICT);
+    const nombreEncontrado = await this.productoRepo.findOne({
+      where: {
+        nombreproducto,
+      },
+    });
+    if (barcodeEncontrado || nombreEncontrado) {
+      return new HttpException(
+        'Nombre de Producto Existente o bien Código de Barras Duplicado',
+        HttpStatus.CONFLICT,
+      );
     }
-    const nuevoProducto = this.productoRepo.create(producto);
-    return this.productoRepo.save(nuevoProducto);
+    return await this.productoRepo.save(producto);
   }
 
-  obtenerProductos() {
-    return this.productoRepo.find();
+  async obtenerProductos() {
+    return await this.productoRepo.find();
   }
 
   async obtenerProductoId(idproductos: number) {
@@ -39,32 +50,43 @@ export class ProductosService {
     return productoEncontrado;
   }
 
-  obtenerProductoCB(codigobarra: string) {
-    return this.productoRepo.findOne({
+  async obtenerProductoCB(codigobarra: string) {
+    const productoEncontrado = await this.productoRepo.findOne({
       where: {
         codigobarra,
       },
     });
+    if (!productoEncontrado) {
+      return new HttpException('Producto No encontrado', HttpStatus.NOT_FOUND);
+    }
+    return productoEncontrado;
   }
 
   async eliminarProducto(idproductos: number) {
-    const productoEncontrado = this.productoRepo.findOne({
-      where: { idproductos },
+    const result = await this.productoRepo.delete({
+      idproductos,
     });
-    if (!productoEncontrado) {
+    if (result.affected === 0) {
       return new HttpException(
         'El producto que desea eliminar no existe',
         HttpStatus.NOT_FOUND,
       );
     }
-
-    this.productoRepo.delete({ idproductos });
+    return result;
   }
 
-  actualizarProducto(
+  async actualizarProducto(
     idproductos: number,
     productoActualizado: crearProductoDTO,
   ) {
-    return this.productoRepo.update({ idproductos }, productoActualizado);
+    const productoEncontrado = await this.productoRepo.findOne({
+      where: { idproductos },
+    });
+    if (!productoEncontrado) {
+      return new HttpException('El producto no existe', HttpStatus.NOT_FOUND);
+    }
+    const actProducto = Object.assign(productoEncontrado, productoActualizado);
+
+    return this.productoRepo.save(actProducto);
   }
 }
