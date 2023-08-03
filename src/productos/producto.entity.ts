@@ -5,7 +5,7 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm';
-import { Rubro } from './rubro.entity';
+import { Rubro } from '../rubros/rubro.entity';
 
 @Entity({ name: 'productos' })
 export class Producto {
