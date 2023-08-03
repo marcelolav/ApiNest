@@ -9,9 +9,9 @@ import {
   Patch,
 } from '@nestjs/common';
 import { crearProductoDTO } from './dto/producto.dto';
+import { ApiTags } from '@nestjs/swagger';
 import { ProductosService } from './productos.service';
-//import { Producto } from './producto.entity';
-
+@ApiTags('Productos')
 @Controller('productos')
 export class ProductosController {
   constructor(private productoService: ProductosService) {}
@@ -47,6 +47,17 @@ export class ProductosController {
     return this.productoService.actualizarProducto(
       idproductos,
       productoActualizado,
+    );
+  }
+
+  @Patch(':id/:cantidad')
+  actualizaStock(
+    @Param('id', ParseIntPipe) idproductos,
+    @Param('cantidad', ParseIntPipe) cantidad,
+  ) {
+    return this.productoService.actualizarCantidadProducto(
+      idproductos,
+      cantidad,
     );
   }
 }

@@ -3,8 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Producto } from './producto.entity';
 import { crearProductoDTO } from './dto/producto.dto';
-//import { Rubro } from './rubro.entity';
-// import { validate } from 'class-validator';
 
 @Injectable()
 export class ProductosService {
@@ -88,5 +86,21 @@ export class ProductosService {
     const actProducto = Object.assign(productoEncontrado, productoActualizado);
 
     return this.productoRepo.save(actProducto);
+  }
+
+  async actualizarCantidadProducto(idproductos: number, cantidad: number) {
+    const productoEncontrado = await this.productoRepo.findOne({
+      where: { idproductos },
+    });
+    if (!productoEncontrado) {
+      return new HttpException('El producto no existe', HttpStatus.NOT_FOUND);
+    }
+    const existenciaAnterior = productoEncontrado.existencia;
+    const cantidadReemplazo = existenciaAnterior + cantidad;
+    productoEncontrado.existencia = cantidadReemplazo;
+    this.productoRepo.save(productoEncontrado);
+    console.log('Existencia Anterior: ', existenciaAnterior);
+    console.log('Cantidad :', cantidad);
+    console.log('Existencia Nueva: ', cantidadReemplazo);
   }
 }

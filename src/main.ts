@@ -12,11 +12,11 @@ async function bootstrap() {
       'API REST desarrollada para el sistema front de inventarios',
     )
     .setVersion('1.0')
-    .addTag('Inventario')
+    //.addTag('Inventario')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('api/docs', app, document);
+  SwaggerModule.setup('docs', app, document);
   app.useGlobalPipes(
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   ),

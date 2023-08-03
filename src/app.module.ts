@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
-import { ProductosModule } from './productos/productos.module';
-// import { ProductosController } from './productos/productos.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-// import { ProductosService } from './productos/productos.service';
+import { ProductosModule } from './productos/productos.module';
+import { RubrosModule } from './/rubros/rubros.module';
+import { ClientesModule } from './clientes/clientes.module';
+import { ProveedoresModule } from './proveedores/proveedores.module';
+import { ServiciosModule } from './servicios/servicios.module';
 
 @Module({
   imports: [
@@ -18,6 +20,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: false,
     }),
     ProductosModule,
+    RubrosModule,
+    ClientesModule,
+    ProveedoresModule,
+    ServiciosModule,
   ],
   controllers: [],
   providers: [],
