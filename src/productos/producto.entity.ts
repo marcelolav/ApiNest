@@ -17,13 +17,13 @@ export class Producto {
   nombreproducto: string;
   @Column({ type: 'varchar', length: 250, nullable: false })
   descripcion: string;
-  @Column({ type: 'decimal', precision: 9, scale: 2 })
+  @Column()
   precioventa: number;
-  @Column({ type: 'decimal', precision: 9, scale: 2 })
+  @Column()
   precioventausd: number;
-  @Column({ type: 'decimal', precision: 9, scale: 2 })
+  @Column()
   preciocompra: number;
-  @Column({ type: 'decimal', precision: 9, scale: 2 })
+  @Column()
   preciocomprausd: number;
   @Column({ type: 'int' })
   existencia: number;
