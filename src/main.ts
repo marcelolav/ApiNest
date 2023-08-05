@@ -16,7 +16,6 @@ async function bootstrap() {
       'API REST desarrollada para el sistema front de inventarios',
     )
     .setVersion('1.0')
-    //.addTag('Inventario')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);

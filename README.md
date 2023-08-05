@@ -43,6 +43,16 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Documentación de API (Endpoints)
+
+Para acceder a todos los endpoints el sistema cuenta con Swagger. Una vez iniciada la API puede acceder a todos los endpoints en la dirección:
+
+```
+http://localhost:3000/docs/
+```
+
+O bien si se encuentra instalado por default hacer [click aqui...](http://localhost:3000/docs#/)
+
 ## Pruebas
 
 ```bash
