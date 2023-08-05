@@ -11,11 +11,20 @@ import {
 import { crearProductoDTO } from './dto/producto.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { ProductosService } from './productos.service';
+
 @ApiTags('Productos')
 @Controller('productos')
 export class ProductosController {
   constructor(private productoService: ProductosService) {}
 
+  @Get('/lp/')
+  obtenerListaPrecios() {
+    return this.productoService.obtenerListaPrecios();
+  }
+  @Get('/faltantes/')
+  obtenerFaltantes() {
+    return this.productoService.obtenerFaltantes();
+  }
   @Get()
   obtenerProductos() {
     return this.productoService.obtenerProductos();
@@ -29,6 +38,7 @@ export class ProductosController {
   obtenerProductoCB(@Param('id') codigobarra: string) {
     return this.productoService.obtenerProductoCB(codigobarra);
   }
+
   @Post()
   crearProducto(@Body() nuevoProducto: crearProductoDTO) {
     return this.productoService.crearProducto(nuevoProducto);

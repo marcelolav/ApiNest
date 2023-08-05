@@ -3,11 +3,17 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Producto } from './producto.entity';
 import { crearProductoDTO } from './dto/producto.dto';
+import { Productolistaprecios } from './producto.listaprecios.entity';
+import { Productolistafaltantes } from './producto.listafaltantes.entity';
 
 @Injectable()
 export class ProductosService {
   constructor(
     @InjectRepository(Producto) private productoRepo: Repository<Producto>,
+    @InjectRepository(Productolistaprecios)
+    private listaprecioRepo: Repository<Productolistaprecios>,
+    @InjectRepository(Productolistafaltantes)
+    private faltantes: Repository<Productolistafaltantes>,
   ) {}
 
   async crearProducto(producto: crearProductoDTO) {
@@ -58,6 +64,24 @@ export class ProductosService {
       return new HttpException('Producto No encontrado', HttpStatus.NOT_FOUND);
     }
     return productoEncontrado;
+  }
+
+  async obtenerListaPrecios() {
+    const lista = this.listaprecioRepo.find();
+    if (!lista) {
+      console.log('Error la lista esta vacia');
+    } else {
+      return lista;
+    }
+  }
+
+  async obtenerFaltantes() {
+    const lista = this.faltantes.find();
+    if (!lista) {
+      console.log('Error la lista esta vacia');
+    } else {
+      return lista;
+    }
   }
 
   async eliminarProducto(idproductos: number) {
