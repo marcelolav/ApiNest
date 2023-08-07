@@ -10,6 +10,7 @@ import { ComprasCabeceraModule } from './compras-cabecera/compras-cabecera.modul
 import { ComprasDetalleModule } from './compras-detalle/compras-detalle.module';
 import { VentasCabeceraModule } from './ventas-cabecera/ventas-cabecera.module';
 import { VentasDetalleModule } from './ventas-detalle/ventas-detalle.module';
+import { AuxproductosModule } from './auxproductos/auxproductos.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -32,6 +33,7 @@ import { VentasDetalleModule } from './ventas-detalle/ventas-detalle.module';
     ComprasDetalleModule,
     VentasCabeceraModule,
     VentasDetalleModule,
+    AuxproductosModule,
   ],
 })
 export class AppModule {}
