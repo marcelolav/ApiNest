@@ -1,24 +1,15 @@
-# Use root/example as user/password credentials
-version: '3.1'
-
+version: '3.8'
 services:
-  db:
-    image: mysql:8.0
-    command: --default-authentication-plugin=mysql_native_password
+  mysql:
+    image: mysql
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: contra1234
+      MYSQL_ROOT_PASSWORD: 4Vfr7RzpBppAPmjU0cEp
       MYSQL_DATABASE: inventario
-    networks:
-      - backend
     volumes:
       - ./data:/var/lib/mysql
-  apirest:
-    image: apinest
-    networks:
-      - backend
-    links: 
-      - "db:mysql"
-networks:
-  backend:
-    driver: bridge
+ 
